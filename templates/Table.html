@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <title>Table #9</title>
+</head>
+
+<body>
+    <h2>Table #9</h2>
+    <div>
+        <table>
+            <thead>
+                <tr>
+                    <th>id</th>
+                    <th>Reminder</th>
+                    <th>Start Date</th>
+                    <th>End Date</th>
+                    <th>Active</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for reminder in reminders %} 
+                <tr>
+                    <th>
+                        <label>
+                            <input type="checkbox">
+                        </label>
+                    </th>
+                    <td>{{reminder.id}}</td>
+                    <td>{{reminder.reminderText}}</td>
+                    <td>{{reminder.startTime}}</td>
+                    <td>{{reminder.endTime}}</td>
+                    <td>{{reminder.isActive}}</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+</body>
+
+</html>
