@@ -3,42 +3,72 @@
 
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
-    <title>Table #9</title>
+    <title>Reminders</title>
 </head>
 
 <body>
-    <h2>Table #9</h2>
-    <div>
-        <table>
-            <thead>
-                <tr>
-                    <th>id</th>
-                    <th>Reminder</th>
-                    <th>Start Date</th>
-                    <th>End Date</th>
-                    <th>Active</th>
-                </tr>
-            </thead>
-            <tbody>
-                {% for reminder in reminders %} 
-                <tr>
-                    <th>
-                        <label>
-                            <input type="checkbox">
-                        </label>
-                    </th>
-                    <td>{{reminder.id}}</td>
-                    <td>{{reminder.reminderText}}</td>
-                    <td>{{reminder.startTime}}</td>
-                    <td>{{reminder.endTime}}</td>
-                    <td>{{reminder.isActive}}</td>
-                </tr>
-                {% endfor %}
-            </tbody>
-        </table>
-    </div>
+    <h2 style="text-align: center;">List of Reminders</h2>
+    <table>
+        <thead>
+            <tr>
+                <th>Reminder</th>
+                <th>Start Date</th>
+                <th>End Date</th>
+                <th>Active</th>
+                <th>Completed</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for reminder in reminders %}
+            <tr id="row-{{reminder.id}}">
+                <td>{{reminder.reminderText}}</td>
+                <td>{{reminder.startTime.strftime("%a, %b %d at %I:%M %p")}}</td>
+                <td>{{reminder.endTime.strftime("%a, %b %d at %I:%M %p")}}</td>
+                {% if reminder.isActive == True%}
+                <td style="background:green; color:white;">{{reminder.isActive}}</td>
+                {% else %}
+                <td style="background:red; color:white;">{{reminder.isActive}}</td>
+                {% endif %}
+                <td><input  id={{reminder.id}} type="checkbox" onclick='deleteReminder(this.id)'></td><label>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+    <br>
+    <h1 style="text-align: center;" ><a href='/addReminder'>Click here to add a Reminder</a></h1>
 </body>
 
+
+<style>
+    body {
+        background-color: darkgrey;
+        font-size: large;
+    }
+
+    table {
+        width: 50%;
+        margin: auto;
+        border: 1px solid black;
+        border-collapse: collapse;
+    }
+
+    th,td {
+        border: 1px solid black;
+        text-align: center;
+        height:fit-content;
+    }
+</style>
+
+
+<script>
+    function deleteReminder(id){
+        console.log(id)
+        var request = new XMLHttpRequest();
+        request.open("DELETE", '/deleteReminder/' + id, true);
+        request.send()
+        document.getElementById("row-"+id).remove()
+        //location.reload()
+    }
+</script>
 </html>

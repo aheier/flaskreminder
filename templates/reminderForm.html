@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+    <title>Add Reminder</title>
+</head>
+
+<body>
+    <h1>Add Reminders</h1>
+    <form action = '/addReminder' method="POST" onsubmit=alert()>
+        <label for='text'>
+            Reminder text
+        </label>
+        <input name='text' type=text required> <br>
+        <label>
+            Start Date
+        </label for='startDate'>
+        <input name='startDate' type="datetime-local" required><br>
+        <label for = 'endDate'>
+            End Date
+        </label>
+        <input name='endDate' type="datetime-local" required><br>
+        <input name='isActive' value='True' type="radio" required>
+        <label for = 'True'>Active</label>
+        <input name='isActive' value='False' type="radio">
+        <label for = 'False'>InActive</label>
+        <br>
+        <input type=submit>
+    </form>
+</body>
+
+<script>
+    function alert() {
+      alert("The form was submitted");
+    }
+    </script>
+
+<style>
+    body {
+        background-color: darkgrey;
+        font-size: large;
+        text-align: center;
+    }
+
+    form{
+        text-align: center;
+        margin: auto;
+    }
+
+</style>
+
+
+</html>
